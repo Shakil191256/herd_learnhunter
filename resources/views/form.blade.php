@@ -84,6 +84,11 @@
 
     <h2>Registration Form</h2>
 
+@if(session('success'))
+    <div style="background: lightblue; padding:10px; margin-bottom:15px;">
+        {{ session('success') }}
+    </div>
+@endif
     <form action="{{ route('submit.form') }}" method="POST">
 
         @csrf

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,7 @@
             background: #fff;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         h2 {
@@ -58,7 +59,7 @@
 
         input:focus {
             border-color: #0d6efd;
-            box-shadow: 0 0 6px rgba(13,110,253,0.3);
+            box-shadow: 0 0 6px rgba(13, 110, 253, 0.3);
         }
 
         button {
@@ -78,38 +79,48 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h2>Registration Form</h2>
+        <h2>Registration Form</h2>
 
-@if(session('success'))
-    <div style="background: lightblue; padding:10px; margin-bottom:15px;">
-        {{ session('success') }}
+        <!-- @if(session('success'))
+        <div style="background: lightblue; padding:10px; margin-bottom:15px;">
+            {{ session('success') }}
+        </div>
+        @endif -->
+        <form action="{{ route('submit.form') }}" method="POST">
+
+            @csrf
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Enter your name">
+                @error('name')
+                <span style="color:red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone_number" placeholder="Enter your phone number">
+                @error('phone_number')
+                <span style="color:red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Enter your email">
+                @error('email')
+                <span style="color:red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
     </div>
-@endif
-    <form action="{{ route('submit.form') }}" method="POST">
-
-        @csrf
-
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="name" placeholder="Enter your name">
-        </div>
-
-        <div class="form-group">
-            <label>Phone Number</label>
-            <input type="number" name="phone_number" placeholder="Enter your phone number">
-        </div>
-
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="Enter your email">
-        </div>
-
-        <button type="submit">Submit</button>
-
-    </form>
-
-</div>
